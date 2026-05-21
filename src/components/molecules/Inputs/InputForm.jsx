@@ -70,11 +70,13 @@ export const InputForm = (props) => {
     <SContainer>
       <textarea
         value={title}
+        aria-label="title"
         placeholder="内容を入力"
         onChange={onChangeTitle}
       ></textarea>
       <input
         type="number"
+        aria-label="time"
         value={time}
         placeholder="整数を入力"
         onChange={onChangeTime}
