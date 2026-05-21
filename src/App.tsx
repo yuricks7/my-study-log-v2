@@ -1,59 +1,65 @@
 import './App.css';
-import { PrimaryButton } from "./components/atoms/buttons/PrimaryButton"
-import { AreaHeader } from "./components/atoms/headers/AreaHeader"
+import { useState } from 'react';
+
+import { AreaHeader }    from "./components/atoms/headers/AreaHeader";
+import { InputForm }     from "./components/molecules/Inputs/InputForm";
+import { HistoryTable }  from "./components/molecules/tables/HistoryTable";
 
 function App() {
+  // テストデータ
+  const sample = [{
+    id: 123456789,
+    created_at: new Date(),
+    title: "数学",
+    time: 3,
+  }, {
+    id: 987654321,
+    created_at: new Date(),
+    title: "英語",
+    time: 1,
+  }, {
+    id: 111111111,
+    created_at: new Date(),
+    title: "音楽",
+    time: 5,
+  }];
+
+  // states
+  const [records,  setRecords]  = useState(sample);
+
+  /**
+   * 合計時間を算出する
+   *
+   * @returns {number}
+   */
+  const updateSumTime = (arr) => {
+    let ret = 0;
+    for (let record of arr) {
+      ret += record.time;
+    }
+
+    return ret;
+  }
+  const [sum, setSum]   = useState(updateSumTime(sample));
+
+  // =====================================
+  // 関数の定義
+  // =====================================
   return (
     <div className="container">
       <h1>学習記録アプリ</h1>
       <div className='input-area'>
         <AreaHeader>入力</AreaHeader>
-        <textarea></textarea>
-        <input type="number" id="" />時間
-        <PrimaryButton onClick={() => alert("Hi!")}>追加</PrimaryButton>
+        <InputForm
+          records={records} setRecords={setRecords}
+          sum={sum} setSum={setSum}
+          updateSumTime={updateSumTime}/>
       </div>
 
       <div className='history-area'>
         <AreaHeader>履歴</AreaHeader>
-        <table>
-          <thead>
-            <th>日付</th>
-            <th>内容</th>
-            <th>時間</th>
-            <th></th>
-            <th></th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2026/05/10</td>
-              <td>数学</td>
-              <td>3時間</td>
-              <td className="btn-space"><PrimaryButton onClick={() => alert("Hi!")}>更新</PrimaryButton></td>
-              <td className="btn-space"><PrimaryButton onClick={() => alert("Hi!")}>削除</PrimaryButton></td>
-            </tr>
-            <tr>
-              <td>2026/05/15</td>
-              <td>英語</td>
-              <td>3時間</td>
-              <td className="btn-space"><PrimaryButton onClick={() => alert("Hi!")}>更新</PrimaryButton></td>
-              <td className="btn-space"><PrimaryButton onClick={() => alert("Hi!")}>削除</PrimaryButton></td>
-            </tr>
-            <tr>
-              <td>2026/05/19</td>
-              <td>合唱の練習</td>
-              <td>3時間</td>
-              <td className="btn-space"><PrimaryButton onClick={() => alert("Hi!")}>更新</PrimaryButton></td>
-              <td className="btn-space"><PrimaryButton onClick={() => alert("Hi!")}>削除</PrimaryButton></td>
-            </tr>
-            <tr>
-              <td>2026/05/20</td>
-              <td>数学</td>
-              <td>3時間</td>
-              <td className="btn-space"><PrimaryButton onClick={() => alert("Hi!")}>更新</PrimaryButton></td>
-              <td className="btn-space"><PrimaryButton onClick={() => alert("Hi!")}>削除</PrimaryButton></td>
-            </tr>
-          </tbody>
-        </table>
+        <p>合計：{sum}時間</p>
+        <HistoryTable records={records}/>
       </div>
     </div>
   );

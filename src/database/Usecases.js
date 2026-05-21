@@ -1,7 +1,7 @@
-import { supabase } from "./supabaseClient";
+import { supabase } from "./Supabase/supabaseClient";
 import { TABLE_NAME } from "../state/studyLog/utils";
 
-export const StudyLogUsecase = {
+export const Usecase = {
   async fetchList() {
     const { data, error } = await supabase
       .from(TABLE_NAME)
