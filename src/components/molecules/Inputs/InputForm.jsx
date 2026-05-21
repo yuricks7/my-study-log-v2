@@ -8,13 +8,15 @@ export const InputForm = (props) => {
   //  states
   // ==========================
   const {
+    title, setTitle,
+    time, setTime,
     records, setRecords,
     sum, setSum,
-    updateSumTime
+    updateSumTime,
+    hasTitleError,
+    hasTimeError,
+    onAdd
   } = props;
-
-  const [title, setTitle] = useState("");
-  const [time,  setTime]  = useState(0);
 
   // ==========================
   //  関数
@@ -75,9 +77,9 @@ export const InputForm = (props) => {
         placeholder="整数を入力"
         onChange={onChangeTime}
       />時間
-      <PrimaryButton onClick={addLog}>追加</PrimaryButton>
-      {!title && <ErrorMessage>学習した内容を入力してください</ErrorMessage>}
-      {!time  && <ErrorMessage>1以上の整数を入力してください</ErrorMessage>}
+      <PrimaryButton onClick={() => onAdd(title, time)} >追加</PrimaryButton>
+      {!hasTitleError && <ErrorMessage>学習した内容を入力してください</ErrorMessage>}
+      {!hasTimeError  && <ErrorMessage>1以上の整数を入力してください</ErrorMessage>}
     </>
   )
 }
