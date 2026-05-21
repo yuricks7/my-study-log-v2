@@ -1,9 +1,9 @@
 import './App.css';
 import { useState } from 'react';
 
-import { AreaHeader }    from "./components/atoms/headers/AreaHeader";
-import { InputForm }     from "./components/molecules/Inputs/InputForm";
-import { HistoryTable }  from "./components/molecules/tables/HistoryTable";
+import { AreaHeader }    from "./__components__/atoms/headers/AreaHeader";
+import { InputForm }     from "./__components__/molecules/Inputs/InputForm";
+import { HistoryTable }  from "./__components__/molecules/tables/HistoryTable";
 
 function App() {
   // テストデータ

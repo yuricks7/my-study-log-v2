@@ -1,5 +1,7 @@
 import { supabase } from "./Supabase/supabaseClient";
-import { TABLE_NAME } from "../state/studyLog/utils";
+
+// Supabase内のテーブル名
+export const TABLE_NAME = "study-record";
 
 export const Usecase = {
   async fetchList() {
