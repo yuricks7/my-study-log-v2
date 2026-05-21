@@ -1,6 +1,6 @@
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton"
 
-import { formatDate } from "../../../Date/formatDate";
+import { formatDate } from "../../../functions/Date/formatDate";
 
 export const HistoryTable = (props) => {
   const { records } = props;

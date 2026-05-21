@@ -3,7 +3,7 @@ import { supabase } from "./Supabase/supabaseClient";
 // Supabase内のテーブル名
 export const TABLE_NAME = "study-record";
 
-export const Usecase = {
+export const DbUsecase = {
   async fetchList() {
     const { data, error } = await supabase
       .from(TABLE_NAME)

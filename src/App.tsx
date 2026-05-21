@@ -1,31 +1,24 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { AreaHeader }    from "./__components__/atoms/headers/AreaHeader";
-import { InputForm }     from "./__components__/molecules/Inputs/InputForm";
-import { HistoryTable }  from "./__components__/molecules/tables/HistoryTable";
+import { DbUsecase } from "./functions/database/DbUsecase";
+
+import { AreaHeader }   from "./components/atoms/headers/AreaHeader";
+import { InputForm }    from "./components/molecules/Inputs/InputForm";
+import { HistoryTable } from "./components/molecules/tables/HistoryTable";
 
 function App() {
-  // テストデータ
-  const sample = [{
-    id: 123456789,
-    created_at: new Date(),
-    title: "数学",
-    time: 3,
-  }, {
-    id: 987654321,
-    created_at: new Date(),
-    title: "英語",
-    time: 1,
-  }, {
-    id: 111111111,
-    created_at: new Date(),
-    title: "音楽",
-    time: 5,
-  }];
+  const [records, setRecords] = useState([]);
+  const [sum, setSum] = useState(0);
 
-  // states
-  const [records,  setRecords]  = useState(sample);
+  useEffect(() => {
+    async function load() {
+      const list = await DbUsecase.fetchList();
+      setRecords(list); // ← これが重要
+      setSum(updateSumTime(list));
+    }
+    load();
+  }, []);
 
   /**
    * 合計時間を算出する
@@ -40,7 +33,6 @@ function App() {
 
     return ret;
   }
-  const [sum, setSum]   = useState(updateSumTime(sample));
 
   // =====================================
   // 関数の定義
