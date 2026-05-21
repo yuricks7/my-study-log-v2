@@ -8,6 +8,7 @@ export const HistoryArea = (props) => {
     handleUpdate,
     handleDelete
   } = props;
+
   return (
     <div className='history-area'>
       <AreaHeader>履歴</AreaHeader>
