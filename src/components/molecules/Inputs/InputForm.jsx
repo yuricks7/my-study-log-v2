@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton";
 import { ErrorMessage } from '../../atoms/messages/ErrorMessage';
 
+import * as lib from "InputForm"
+
 export const InputForm = (props) => {
   // ==========================
   //  states
@@ -21,40 +23,8 @@ export const InputForm = (props) => {
   } = props;
 
   // ==========================
-  //  関数
+  //  イベント
   // ==========================
-  const addLog = () => {
-    const newLog = {
-      id: Number(new Date()),
-      created_at: new Date(),
-      title: title,
-      time: Number(time),
-    }
-
-    if (!title) {
-      alert("学習した内容を入力してください");
-      return;
-    }
-    if (!time) {
-      alert("1以上の整数を入力してください");
-      return;
-    }
-
-    let m = '';
-    m += `この内容で登録しますか？\n`;
-    m += `内容：${newLog.title}\n`;
-    m += `時間：${newLog.time}`;
-    if (!confirm(m)) return;
-
-    const newRecords = [...records, newLog];
-    setRecords(newRecords);
-
-    // 初期化
-    setTitle("");
-    setTime(0);
-    setSum(updateSumTime(newRecords));
-  }
-
   const onChangeTitle = (event) => {
     setTitle(event.target.value);
   };

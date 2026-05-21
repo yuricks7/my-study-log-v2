@@ -44,6 +44,12 @@ function App() {
       return;
     }
 
+    let m = '';
+    m += `この内容で登録しますか？\n`;
+    m += `内容：${title}\n`;
+    m += `時間：${time}`;
+    if (!confirm(m)) return;
+
     // データを追加
     const newRecord = await DbUsecase.add(title, time);
     const newList = [...records, newRecord];

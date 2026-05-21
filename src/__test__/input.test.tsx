@@ -1,10 +1,11 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import App from "../App";
+
+import InputForm from "../components/molecules/Inputs/InputForm";
 
 describe("入力フォームが存在すること", () => {
   const setUp = () => {
-    render(<App />);
+    render(<InputForm />);
     const titleInput = screen.getByRole(
       'textbox', {name: 'title'}
     );
