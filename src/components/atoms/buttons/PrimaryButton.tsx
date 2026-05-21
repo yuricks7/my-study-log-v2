@@ -1,6 +1,12 @@
+import type { FC } from "react";
 import styled from "styled-components";
 
-export const PrimaryButton = (props) => {
+type Props = {
+  children: string;
+  onClick: any;
+}
+
+export const PrimaryButton: FC<Props> = (props) => {
   const { children, onClick } = props;
 
   return (

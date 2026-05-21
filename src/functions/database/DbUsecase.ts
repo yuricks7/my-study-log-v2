@@ -1,8 +1,14 @@
+import type { FC } from "react";
 import { supabase } from "./Supabase/supabaseClient";
 
-// Supabase内のテーブル名
-export const TABLE_NAME = "study-record";
+import type { Record } from "../../types/record";
 
+// Supabase内のテーブル名
+export const TABLE_NAME: string = "study-record";
+
+/**
+ * Supabaseの操作各種
+ */
 export const DbUsecase = {
   async fetchList() {
     const { data, error } = await supabase
@@ -14,7 +20,7 @@ export const DbUsecase = {
     return data;
   },
 
-  async add(title, time) {
+  async add(title: string, time: number) {
     const { data, error } = await supabase
       .from(TABLE_NAME)
       .insert({ title, time })
@@ -24,7 +30,7 @@ export const DbUsecase = {
     return data[0];
   },
 
-  async update(id, title, time) {
+  async update(id: string, title: string, time: number) {
     const { data, error } = await supabase
       .from(TABLE_NAME)
       .update({ title, time })
@@ -35,7 +41,7 @@ export const DbUsecase = {
     return data[0];
   },
 
-  async remove(id) {
+  async remove(id: string) {
     const { error } = await supabase
       .from(TABLE_NAME)
       .delete()

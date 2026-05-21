@@ -5,8 +5,6 @@ import { useState } from 'react';
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton";
 import { ErrorMessage } from '../../atoms/messages/ErrorMessage';
 
-import * as lib from "InputForm"
-
 export const InputForm = (props) => {
   // ==========================
   //  states

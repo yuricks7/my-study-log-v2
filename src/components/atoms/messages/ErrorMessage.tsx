@@ -1,6 +1,11 @@
+import type { FC } from "react";
 import styled from "styled-components";
 
-export const ErrorMessage = (props) => {
+type Props = {
+  message: string
+}
+
+export const ErrorMessage: FC<Props> = (props) => {
   const { message } = props;
 
   return (

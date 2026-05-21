@@ -6,22 +6,24 @@ import { DbUsecase } from "./functions/database/DbUsecase";
 import { FormArea } from "./components/organisms/FormArea"
 import { HistoryArea } from "./components/organisms/HistoryArea"
 
+import type { Record } from './types/record';
+
 function App() {
-  const [records, setRecords] = useState([]);
-  const [sum, setSum] = useState(0);
+  const [records, setRecords] = useState<Record[]>([]);
+  const [sum, setSum] = useState<number>(0);
 
-  const [title, setTitle] = useState("");
-  const [time,  setTime]  = useState(0);
+  const [title, setTitle] = useState<string>("");
+  const [time,  setTime]  = useState<number>(0);
 
-  const [hasTitleError, setHasTitleError] = useState(false);
-  const [hasTimeError, setHasTimeError] = useState(false);
+  const [hasTitleError, setHasTitleError] = useState<boolean>(false);
+  const [hasTimeError, setHasTimeError] = useState<boolean>(false);
 
   // =====================================
   // データベース操作
   // =====================================
   useEffect(() => {
     async function load() {
-      const list = await DbUsecase.fetchList();
+      const list: Record[] = await DbUsecase.fetchList();
       setRecords(list); // ← これが重要
       setSum(updateSumTime(list));
     }
@@ -31,10 +33,10 @@ function App() {
   /**
    * 追加
    *
-   * @param title {string}
-   * @param time {number}
+   * @param title
+   * @param time
    */
-  const handleAdd = async (title, time) => {
+  const handleAdd = async (title: string, time: number) => {
     if (!title) {
       setHasTitleError(true);
       return;
@@ -44,15 +46,15 @@ function App() {
       return;
     }
 
-    let m = '';
+    let m: string = '';
     m += `この内容で登録しますか？\n`;
     m += `内容：${title}\n`;
     m += `時間：${time}`;
     if (!confirm(m)) return;
 
     // データを追加
-    const newRecord = await DbUsecase.add(title, time);
-    const newList = [...records, newRecord];
+    const newRecord: Record = await DbUsecase.add(title, time);
+    const newList: Record[] = [...records, newRecord];
     setRecords(newList);
     setSum(updateSumTime(newList));
 
@@ -64,11 +66,11 @@ function App() {
   /**
    * 更新
    *
-   * @param id {string}
-   * @param title {string}
-   * @param time {number}
+   * @param id
+   * @param title
+   * @param time
    */
-  const handleUpdate = async (id, title, time) => {
+  const handleUpdate = async (id: string, title: string, time: number) => {
     if (!title) {
       setHasTitleError(true);
       return;
@@ -79,8 +81,8 @@ function App() {
     }
 
     // 更新
-    const updated = await DbUsecase.update(id, title, time);
-    const newList = records.map((row) =>
+    const updated: Record = await DbUsecase.update(id, title, time);
+    const newList: Record[] = records.map((row) =>
       row.id === id ? updated : row
     );
 
@@ -95,12 +97,14 @@ function App() {
   /**
    * 削除
    *
-   * @param id {string}
+   * @param id
    */
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: string) => {
     await DbUsecase.remove(id);
 
-    const newList = records.filter((r) => r.id !== id);
+    const newList: Record[] = records.filter(
+      (row) => row.id !== id
+    );
     setRecords(newList);
     setSum(updateSumTime(newList));
   };
@@ -110,11 +114,11 @@ function App() {
   // =====================================
   /**
    * 合計時間を算出する
-   *
-   * @returns {number}
+   * @param arr
+   * @returns 合計時間
    */
-  const updateSumTime = (arr) => {
-    let ret = 0;
+  const updateSumTime = (arr: Record[]): number => {
+    let ret: number = 0;
     for (let record of arr) {
       ret += record.time;
     }

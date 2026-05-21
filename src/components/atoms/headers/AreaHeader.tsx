@@ -1,6 +1,11 @@
+import type { FC } from "react";
 import styled from "styled-components";
 
-export const AreaHeader = (props) => {
+type Props = {
+  children: string
+}
+
+export const AreaHeader: FC<Props> = (props) => {
   const { children } = props;
 
   return (
