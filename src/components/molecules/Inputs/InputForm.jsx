@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 import { useState } from 'react';
 
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton";
@@ -65,7 +67,7 @@ export const InputForm = (props) => {
   //  return
   // ==========================
   return (
-    <>
+    <SContainer>
       <textarea
         value={title}
         placeholder="内容を入力"
@@ -80,6 +82,34 @@ export const InputForm = (props) => {
       <PrimaryButton onClick={() => onAdd(title, time)} >追加</PrimaryButton>
       {!hasTitleError && <ErrorMessage>学習した内容を入力してください</ErrorMessage>}
       {!hasTimeError  && <ErrorMessage>1以上の整数を入力してください</ErrorMessage>}
-    </>
+    </SContainer>
   )
 }
+
+const borderColor = "#79a8a9";
+const SContainer = styled.div`
+  form {
+    width: fit-content;
+    margin: auto;
+  }
+
+  form button {
+    text-align: right;
+  }
+
+  textarea {
+    border-radius: 8px;
+    border: 2px solid ${borderColor};
+    padding: 6px 16px;
+
+    width:  460px;
+    height: 100px;
+    margin: 0 auto; /* 効かない */
+  }
+
+  input {
+    border-radius: 8px;
+    border: 2px solid ${borderColor};
+    padding: 6px 16px;
+  }
+`;
