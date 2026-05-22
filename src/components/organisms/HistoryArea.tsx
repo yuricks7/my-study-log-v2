@@ -1,7 +1,18 @@
+import type { FC } from "react";
+import type { Record } from "../../types/record";
 import { AreaHeader } from "../atoms/headers/AreaHeader"
 import { HistoryTable } from "../molecules/tables/HistoryTable"
 
-export const HistoryArea = (props) => {
+type Props = {
+  title: string;
+  time: number;
+  records: Record[];
+  sum: number;
+  handleUpdate: () => void;
+  handleDelete: () => void;
+}
+
+export const HistoryArea: FC<Props> = (props) => {
   const {
     title, time,
     sum, records,

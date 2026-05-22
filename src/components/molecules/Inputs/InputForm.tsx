@@ -1,20 +1,33 @@
 import styled from "styled-components";
 
-import { useState } from 'react';
-
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton";
 import { ErrorMessage } from '../../atoms/messages/ErrorMessage';
 
-export const InputForm = (props) => {
+import type { FC } from 'react';
+import type { Record } from "../../../types/record";
+
+type Props = {
+  title: string;
+  setTitle: () => string;
+  time: number;
+  setTime: () => number;
+  records: Record[];
+  setRecords: () => Record[];
+  sum: number;
+  setSum: () => number;
+  updateSumTime: () => number;
+  hasTitleError: () => boolean;
+  hasTimeError: () => boolean;
+  onAdd: () => void;
+}
+
+export const InputForm: FC<Props> = (props) => {
   // ==========================
   //  states
   // ==========================
   const {
     title, setTitle,
     time, setTime,
-    records, setRecords,
-    sum, setSum,
-    updateSumTime,
     hasTitleError,
     hasTimeError,
     onAdd
@@ -23,11 +36,11 @@ export const InputForm = (props) => {
   // ==========================
   //  イベント
   // ==========================
-  const onChangeTitle = (event) => {
+  const onChangeTitle = (event: Event) => {
     setTitle(event.target.value);
   };
 
-  const onChangeTime = (event) => {
+  const onChangeTime = (event: Event) => {
     setTime(event.target.value);
   };
 

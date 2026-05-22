@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 type Props = {
   children: string;
-  onClick: any;
+  onClick: () => void;
 }
 
 export const PrimaryButton: FC<Props> = (props) => {

@@ -1,13 +1,24 @@
-import { PrimaryButton } from "../../atoms/buttons/PrimaryButton"
-
-import { formatDate } from "../../../functions/date/formatDate";
 import styled from "styled-components";
 
-export const HistoryTable = (props) => {
+import { formatDate } from "../../../functions/date/formatDate";
+import { PrimaryButton } from "../../atoms/buttons/PrimaryButton"
+
+import type { Record } from "../../../types/record";
+import type { FC } from "react";
+
+type Props = {
+  title: string;
+  time: number;
+  records: Record[];
+  handleUpdate: () => void;
+  handleDelete: () => void;
+}
+
+export const HistoryTable: FC<Props> = (props) => {
   const {
-        title, time, records,
-        handleUpdate,
-        handleDelete
+    title, time, records,
+    handleUpdate,
+    handleDelete
   } = props;
 
   return (

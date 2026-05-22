@@ -1,8 +1,27 @@
 import styled from "styled-components";
+
 import { AreaHeader } from "../atoms/headers/AreaHeader";
 import { InputForm }  from "../molecules/Inputs/InputForm";
 
-export const FormArea = (props) => {
+import type { FC } from "react";
+import type { Record } from "../../types/record";
+
+type Props = {
+  title: string;
+  setTitle: () => string;
+  time: number;
+  setTime: () => number;
+  records: Record[];
+  setRecords: () => Record[];
+  sum: number;
+  setSum: () => number;
+  updateSumTime: () => number;
+  hasTitleError: () => boolean;
+  hasTimeError: () => boolean;
+  handleAdd: () => void;
+}
+
+export const FormArea: FC<Props> = (props) => {
   const {
     title, setTitle,
     time, setTime,

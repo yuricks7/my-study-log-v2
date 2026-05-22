@@ -1,6 +1,5 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-
 import { DbUsecase } from "./functions/database/DbUsecase";
 
 import { FormArea } from "./components/organisms/FormArea"
