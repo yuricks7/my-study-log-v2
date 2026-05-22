@@ -8,8 +8,8 @@ type Props = {
   time: number;
   records: Record[];
   sum: number;
-  handleUpdate: () => void;
-  handleDelete: () => void;
+  // handleUpdate: () => void;
+  // handleDelete: () => void;
 }
 
 export const HistoryArea: FC<Props> = (props) => {

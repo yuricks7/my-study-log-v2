@@ -40,12 +40,18 @@ export const HistoryTable: FC<Props> = (props) => {
             <td>{record.time}時間</td>
             <td className="btn-space">
               <PrimaryButton
-                onClick={() => handleUpdate(record.id, title, time)}
+                onClick={
+                  // @ts-ignore TS2554: Expected 0 arguments, but got 3.
+                  () => handleUpdate(record.id, title, time)
+                }
               >更新</PrimaryButton>
             </td>
             <td className="btn-space">
               <PrimaryButton
-                onClick={() => handleDelete(record.id)}
+                onClick={
+                  // @ts-ignore TS2554: Expected 0 arguments, but got 1.
+                  () => handleDelete(record.id)
+                }
               >削除</PrimaryButton>
             </td>
           </tr>

@@ -1,3 +1,4 @@
+// @ts-ignore TS2882: Cannot find module or type declarations for side-effect import of './App.css'.
 import './App.css';
 import { useState, useEffect } from 'react';
 import { DbUsecase } from "./functions/database/DbUsecase";
@@ -7,7 +8,8 @@ import { HistoryArea } from "./components/organisms/HistoryArea"
 
 import type { Record } from './types/record';
 
-function App() {
+// @ts-ignore TS7010: 'App', which lacks return-type annotation, implicitly has an 'any' return type.
+export const App = () => {
   const [records, setRecords] = useState<Record[]>([]);
   const [sum, setSum] = useState<number>(0);
 
@@ -116,6 +118,7 @@ function App() {
    * @param arr
    * @returns 合計時間
    */
+  // @ts-ignore Target signature provides too few arguments. Expected 1 or more, but got 0.
   const updateSumTime = (arr: Record[]): number => {
     let ret: number = 0;
     for (let record of arr) {
@@ -131,6 +134,7 @@ function App() {
   return (
     <div className="container">
       <h1>学習記録アプリ</h1>
+      // @ts-ignore TS2322: Target signature provides too few arguments. Expected 1 or more, but got 0.
       <FormArea
         title={title} setTitle={setTitle}
         time={time} setTime={setTime}

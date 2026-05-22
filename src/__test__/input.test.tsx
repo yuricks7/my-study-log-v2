@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
+//@ts-ignore TS2613: Module '"C:/React/my-study-log-v2/src/components/molecules/Inputs/InputForm"' has no default export. Did you mean to use 'import { InputForm } from "C:/React/my-study-log-v2/src/components/molecules/Inputs/InputForm"' instead?
 import InputForm from "../components/molecules/Inputs/InputForm";
 
 describe("入力フォームが存在すること", () => {

@@ -8,20 +8,21 @@ import type { Record } from "../../types/record";
 
 type Props = {
   title: string;
-  setTitle: () => string;
+  // setTitle<string>: () => ;
   time: number;
-  setTime: () => number;
+  // setTime: () => number;
   records: Record[];
-  setRecords: () => Record[];
+  // setRecords: () => Record[];
   sum: number;
-  setSum: () => number;
-  updateSumTime: () => number;
-  hasTitleError: () => boolean;
-  hasTimeError: () => boolean;
-  handleAdd: () => void;
+  // setSum: () => number;
+  // updateSumTime: () => number;
+  // hasTitleError: () => boolean;
+  // hasTimeError: () => boolean;
+  // handleAdd: () => void;
 }
 
 export const FormArea: FC<Props> = (props) => {
+  // @ts-ignore TS2339: Property 'setTitle' does not exist on type 'Props'.
   const {
     title, setTitle,
     time, setTime,

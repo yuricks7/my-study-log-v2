@@ -2,14 +2,14 @@ import type { FC } from "react";
 import styled from "styled-components";
 
 type Props = {
-  message: string
+  children: string
 }
 
 export const ErrorMessage: FC<Props> = (props) => {
-  const { message } = props;
+  const { children } = props;
 
   return (
-    <SError>{message}</SError>
+    <SError>{children}</SError>
   )
 }
 
