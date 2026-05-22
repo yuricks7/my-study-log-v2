@@ -1,7 +1,4 @@
-import type { FC } from "react";
 import { supabase } from "./Supabase/supabaseClient";
-
-import type { Record } from "../../types/record";
 
 // Supabase内のテーブル名
 export const TABLE_NAME: string = "study-record";
