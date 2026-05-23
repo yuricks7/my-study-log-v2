@@ -6,7 +6,7 @@ import { PrimaryButton } from "../../atoms/buttons/PrimaryButton"
 import type { FC } from "react";
 import type { StatesType } from "../../../@types/statesType";
 
-export const HistoryTable: FC<Pick<StatesType, "title" | "time" | "records" | "handleUpdate" | "handleDelete"> = (props) => {
+export const HistoryTable: FC<Pick<StatesType, "title" | "time" | "records" | "handleUpdate" | "handleDelete">> = (props) => {
   const {
     title, time, records,
     handleUpdate,
