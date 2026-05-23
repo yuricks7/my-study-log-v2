@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-// // @ts-ignore TS2882: Cannot find module or type declarations for side-effect import of './App.css'.
-// import './App.css';
 
 import { useState, useEffect } from 'react';
 import { DbUsecase } from "./functions/database/DbUsecase";
@@ -10,7 +8,6 @@ import { HistoryArea } from "./components/organisms/HistoryArea"
 
 import type { RecordType } from './@types/RecordType';
 
-// @ts-ignore TS7010: 'App', which lacks return-type annotation, implicitly has an 'any' return type.
 export const App = () => {
   const [records, setRecords] = useState<RecordType[]>([]);
   const [sum, setSum] = useState<number>(0);
