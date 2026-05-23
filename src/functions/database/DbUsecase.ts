@@ -1,3 +1,4 @@
+import type { RecordType } from "../../@types/RecordType";
 import { supabase } from "./Supabase/supabaseClient";
 
 // Supabase内のテーブル名
@@ -7,7 +8,7 @@ export const TABLE_NAME: string = "study-record";
  * Supabaseの操作各種
  */
 export const DbUsecase = {
-  async fetchList() {
+  async fetchList(): Promise<RecordType[]> {
     const { data, error } = await supabase
       .from(TABLE_NAME)
       .select("*")
@@ -17,7 +18,7 @@ export const DbUsecase = {
     return data;
   },
 
-  async add(title: string, time: number) {
+  async add(title: string, time: number): Promise<RecordType[]> {
     const { data, error } = await supabase
       .from(TABLE_NAME)
       .insert({ title, time })
@@ -27,7 +28,7 @@ export const DbUsecase = {
     return data[0];
   },
 
-  async update(id: string, title: string, time: number) {
+  async update(id: string, title: string, time: number): Promise<RecordType> {
     const { data, error } = await supabase
       .from(TABLE_NAME)
       .update({ title, time })
@@ -38,10 +39,10 @@ export const DbUsecase = {
     return data[0];
   },
 
-  async remove(id: string) {
+  async remove(id: string): Promise<string> {
     const { error } = await supabase
       .from(TABLE_NAME)
-      .delete()
+    .delete()
       .eq("id", id);
 
     if (error) throw error;

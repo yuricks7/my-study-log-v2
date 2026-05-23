@@ -6,7 +6,7 @@ import { InputForm }  from "../molecules/Inputs/InputForm";
 import type { FC } from "react";
 import type { StatesType } from "../../@types/statesType";
 
-export const FormArea: FC<StatesType> = (props) => {
+export const FormArea: FC<Omit<StatesType, "setHasTitleError" | "setHasTimeError" | "onAdd" | "handleUpdate" | "handleDelete">> = (props) => {
 
   const {
     title, setTitle,
