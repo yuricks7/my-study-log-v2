@@ -11,9 +11,6 @@ export const FormArea: FC<Omit<StatesType, "setHasTitleError" | "setHasTimeError
   const {
     title, setTitle,
     time, setTime,
-    records, setRecords,
-    sum, setSum,
-    updateSumTime,
     hasTitleError,
     hasTimeError,
     handleAdd
@@ -25,9 +22,6 @@ export const FormArea: FC<Omit<StatesType, "setHasTitleError" | "setHasTimeError
       <InputForm
         title={title} setTitle={setTitle}
         time={time} setTime={setTime}
-        records={records} setRecords={setRecords}
-        sum={sum} setSum={setSum}
-        updateSumTime={updateSumTime}
         hasTitleError={hasTitleError}
         hasTimeError={hasTimeError}
         onAdd={handleAdd}

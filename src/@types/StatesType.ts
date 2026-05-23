@@ -7,22 +7,22 @@ export type StatesType = {
   time: number;
   setTime: (value: number) => void;
 
-  records: RecordType[];
-  setRecords: (value: RecordType[]) => void;
+  records?: RecordType[];
+  setRecords?: (value: RecordType[]) => void;
 
-  sum: number;
-  setSum: (value: number) => void;
+  sum?: number;
+  setSum?: (value: number) => void;
 
-  hasTitleError: boolean;
-  setHasTitleError: (value: boolean) => void;
+  hasTitleError?: boolean;
+  setHasTitleError?: (value: boolean) => void;
 
-  hasTimeError: boolean;
-  setHasTimeError: (value: boolean) => void;
+  hasTimeError?: boolean;
+  setHasTimeError?: (value: boolean) => void;
 
-  updateSumTime: (arr: RecordType[]) => number;
+  updateSumTime?: (arr: RecordType[]) => number;
 
-  onAdd: (title: string, time: number) => void;
-  handleAdd: (title: string, time: number) => void;
-  handleUpdate: (id: string, title: string, time: number) => void;
-  handleDelete: (id: string) => void;
+  onAdd?: (title: string, time: number) => void;
+  handleAdd?: (title: string, time: number) => void;
+  handleUpdate?: (id: string, title: string, time: number) => void;
+  handleDelete?: (id: string) => void;
 }

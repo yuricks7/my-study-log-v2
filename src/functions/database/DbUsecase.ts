@@ -1,5 +1,5 @@
 import type { RecordType } from "../../@types/RecordType";
-import { supabase, supabaseUrl } from "./Supabase/supabaseClient";
+import { supabase } from "./Supabase/supabaseClient";
 
 // Supabase内のテーブル名
 export const TABLE_NAME: string = "my-study-log-v2";
