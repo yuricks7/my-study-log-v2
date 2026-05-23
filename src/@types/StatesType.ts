@@ -2,22 +2,22 @@ import type { RecordType } from "./RecordType";
 
 export type StatesType = {
   title: string;
-  setTitle: () => string;
+  setTitle: (value: string) => void;
 
   time: number;
-  setTime: () => number;
+  setTime: (value: number) => void;
 
   records: RecordType[];
-  setRecords: () => RecordType[];
+  setRecords: (value: RecordType[]) => void;
 
   sum: number;
-  setSum: () => number;
+  setSum: (value: number) => void;
 
   hasTitleError: boolean;
-  setHasTitleError: () => boolean;
+  setHasTitleError: (value: boolean) => void;
 
   hasTimeError: boolean;
-  setHasTimeError: () => boolean;
+  setHasTimeError: (value: boolean) => void;
 
   updateSumTime: (arr: RecordType[]) => number;
 

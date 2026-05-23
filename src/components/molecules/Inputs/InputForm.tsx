@@ -6,7 +6,7 @@ import { ErrorMessage } from '../../atoms/messages/ErrorMessage';
 import type { FC } from 'react';
 import type { StatesType } from "../../../@types/statesType";
 
-export const InputForm: FC<Omit<StatesType, "records" | "sum" | "updateSumTime" | "handleAdd" | "handleUpdate" | "handleDelete"> = (props) => {
+export const InputForm: FC<Omit<StatesType, "records" | "sum" | "updateSumTime" | "handleAdd" | "handleUpdate" | "handleDelete">> = (props) => {
   // ==========================
   //  states
   // ==========================

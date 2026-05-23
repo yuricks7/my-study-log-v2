@@ -31,7 +31,7 @@ describe("入力フォームが存在すること", () => {
     expect(submitButton).not.toBeEnabled();
   });
 
-  test("空のフィールドでフォームを送信した場合にバリデーションエラーが表示される"), async () => {
+  test("空のフィールドでフォームを送信した場合にバリデーションエラーが表示される", async () => {
     const { submitButton } = setUp();
 
     fireEvent.click(submitButton);
@@ -39,5 +39,5 @@ describe("入力フォームが存在すること", () => {
       expect(screen.getByText("学習した内容を入力してください")).toBeInTheDocument();
       expect(screen.getByText("1以上の整数を入力してください")).toBeInTheDocument();
     });
-  }
+  })
 });

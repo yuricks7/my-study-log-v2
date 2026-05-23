@@ -134,7 +134,6 @@ export const App = () => {
   return (
     <div className="container">
       <h1>学習記録アプリ</h1>
-      // @ts-ignore TS2322: Target signature provides too few arguments. Expected 1 or more, but got 0.
       <FormArea
         title={title} setTitle={setTitle}
         time={time} setTime={setTime}

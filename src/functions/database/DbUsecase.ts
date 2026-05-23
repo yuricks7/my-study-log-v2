@@ -18,7 +18,7 @@ export const DbUsecase = {
     return data;
   },
 
-  async add(title: string, time: number): Promise<RecordType[]> {
+  async add(title: string, time: number): Promise<RecordType> {
     const { data, error } = await supabase
       .from(TABLE_NAME)
       .insert({ title, time })
