@@ -1,21 +1,13 @@
-import type { FC } from "react";
-import type { Record } from "../../types/record";
 import { AreaHeader } from "../atoms/headers/AreaHeader"
 import { HistoryTable } from "../molecules/tables/HistoryTable"
 
-type Props = {
-  title: string;
-  time: number;
-  records: Record[];
-  sum: number;
-  // handleUpdate: () => void;
-  // handleDelete: () => void;
-}
+import type { FC } from "react";
+import type { StatesType } from "../../@types/statesType";
 
-export const HistoryArea: FC<Props> = (props) => {
+export const HistoryArea: FC<Pick<StatesType, "title" | "time" | "records" | "sum">> = (props) => {
   const {
     title, time,
-    sum, records,
+    records, sum,
     handleUpdate,
     handleDelete
   } = props;

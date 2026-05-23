@@ -6,11 +6,11 @@ import { DbUsecase } from "./functions/database/DbUsecase";
 import { FormArea } from "./components/organisms/FormArea"
 import { HistoryArea } from "./components/organisms/HistoryArea"
 
-import type { Record } from './types/record';
+import type { RecordType } from './@types/RecordType';
 
 // @ts-ignore TS7010: 'App', which lacks return-type annotation, implicitly has an 'any' return type.
 export const App = () => {
-  const [records, setRecords] = useState<Record[]>([]);
+  const [records, setRecords] = useState<RecordType[]>([]);
   const [sum, setSum] = useState<number>(0);
 
   const [title, setTitle] = useState<string>("");
@@ -24,7 +24,7 @@ export const App = () => {
   // =====================================
   useEffect(() => {
     async function load() {
-      const list: Record[] = await DbUsecase.fetchList();
+      const list: RecordType[] = await DbUsecase.fetchList();
       setRecords(list); // ← これが重要
       setSum(updateSumTime(list));
     }
@@ -54,8 +54,8 @@ export const App = () => {
     if (!confirm(m)) return;
 
     // データを追加
-    const newRecord: Record = await DbUsecase.add(title, time);
-    const newList: Record[] = [...records, newRecord];
+    const newRecord: RecordType = await DbUsecase.add(title, time);
+    const newList: RecordType[] = [...records, newRecord];
     setRecords(newList);
     setSum(updateSumTime(newList));
 
@@ -82,8 +82,8 @@ export const App = () => {
     }
 
     // 更新
-    const updated: Record = await DbUsecase.update(id, title, time);
-    const newList: Record[] = records.map((row) =>
+    const updated: RecordType = await DbUsecase.update(id, title, time);
+    const newList: RecordType[] = records.map((row) =>
       row.id === id ? updated : row
     );
 
@@ -103,7 +103,7 @@ export const App = () => {
   const handleDelete = async (id: string) => {
     await DbUsecase.remove(id);
 
-    const newList: Record[] = records.filter(
+    const newList: RecordType[] = records.filter(
       (row) => row.id !== id
     );
     setRecords(newList);
@@ -119,7 +119,7 @@ export const App = () => {
    * @returns 合計時間
    */
   // @ts-ignore Target signature provides too few arguments. Expected 1 or more, but got 0.
-  const updateSumTime = (arr: Record[]): number => {
+  const updateSumTime = (arr: RecordType[]): number => {
     let ret: number = 0;
     for (let record of arr) {
       ret += record.time;

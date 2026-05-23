@@ -1,5 +1,6 @@
-import type { FC } from "react";
 import styled from "styled-components";
+
+import type { FC } from "react";
 
 type Props = {
   children: string

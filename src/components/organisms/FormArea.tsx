@@ -4,25 +4,10 @@ import { AreaHeader } from "../atoms/headers/AreaHeader";
 import { InputForm }  from "../molecules/Inputs/InputForm";
 
 import type { FC } from "react";
-import type { Record } from "../../types/record";
+import type { StatesType } from "../../@types/statesType";
 
-type Props = {
-  title: string;
-  // setTitle<string>: () => ;
-  time: number;
-  // setTime: () => number;
-  records: Record[];
-  // setRecords: () => Record[];
-  sum: number;
-  // setSum: () => number;
-  // updateSumTime: () => number;
-  // hasTitleError: () => boolean;
-  // hasTimeError: () => boolean;
-  // handleAdd: () => void;
-}
+export const FormArea: FC<StatesType> = (props) => {
 
-export const FormArea: FC<Props> = (props) => {
-  // @ts-ignore TS2339: Property 'setTitle' does not exist on type 'Props'.
   const {
     title, setTitle,
     time, setTime,

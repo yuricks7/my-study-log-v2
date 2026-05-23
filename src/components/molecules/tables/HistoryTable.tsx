@@ -3,18 +3,10 @@ import styled from "styled-components";
 import { formatDate } from "../../../functions/date/formatDate";
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton"
 
-import type { Record } from "../../../types/record";
 import type { FC } from "react";
+import type { StatesType } from "../../../@types/statesType";
 
-type Props = {
-  title: string;
-  time: number;
-  records: Record[];
-  handleUpdate: () => void;
-  handleDelete: () => void;
-}
-
-export const HistoryTable: FC<Props> = (props) => {
+export const HistoryTable: FC<Pick<StatesType, "title" | "time" | "records" | "handleUpdate" | "handleDelete"> = (props) => {
   const {
     title, time, records,
     handleUpdate,
@@ -41,7 +33,6 @@ export const HistoryTable: FC<Props> = (props) => {
             <td className="btn-space">
               <PrimaryButton
                 onClick={
-                  // @ts-ignore TS2554: Expected 0 arguments, but got 3.
                   () => handleUpdate(record.id, title, time)
                 }
               >更新</PrimaryButton>
@@ -49,7 +40,6 @@ export const HistoryTable: FC<Props> = (props) => {
             <td className="btn-space">
               <PrimaryButton
                 onClick={
-                  // @ts-ignore TS2554: Expected 0 arguments, but got 1.
                   () => handleDelete(record.id)
                 }
               >削除</PrimaryButton>

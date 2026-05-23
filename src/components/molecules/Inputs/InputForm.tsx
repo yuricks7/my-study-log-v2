@@ -4,24 +4,9 @@ import { PrimaryButton } from "../../atoms/buttons/PrimaryButton";
 import { ErrorMessage } from '../../atoms/messages/ErrorMessage';
 
 import type { FC } from 'react';
-import type { Record } from "../../../types/record";
+import type { StatesType } from "../../../@types/statesType";
 
-type Props = {
-  title: string;
-  setTitle: () => string;
-  time: number;
-  setTime: () => number;
-  records: Record[];
-  setRecords: () => Record[];
-  sum: number;
-  setSum: () => number;
-  updateSumTime: () => number;
-  hasTitleError: () => boolean;
-  hasTimeError: () => boolean;
-  onAdd: () => void;
-}
-
-export const InputForm: FC<Props> = (props) => {
+export const InputForm: FC<Omit<StatesType, "records" | "sum" | "updateSumTime" | "handleAdd" | "handleUpdate" | "handleDelete"> = (props) => {
   // ==========================
   //  states
   // ==========================

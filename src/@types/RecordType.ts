@@ -1,4 +1,4 @@
-export type Record = {
+export type RecordType = {
   id: string;
   created_at: Date;
   title: string;
