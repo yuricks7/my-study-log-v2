@@ -4,7 +4,7 @@ import { formatDate } from "../../../functions/date/formatDate";
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton"
 
 import type { FC } from "react";
-import type { StatesType } from "../../../@types/statesType";
+import type { StatesType } from "../../../@types/StatesType";
 
 export const HistoryTable: FC<Pick<StatesType, "title" | "time" | "records" | "handleUpdate" | "handleDelete">> = (props) => {
   const {

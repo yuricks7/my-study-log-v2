@@ -4,7 +4,7 @@ import { AreaHeader } from "../atoms/headers/AreaHeader";
 import { InputForm }  from "../molecules/Inputs/InputForm";
 
 import type { FC } from "react";
-import type { StatesType } from "../../@types/statesType";
+import type { StatesType } from "../../@types/StatesType";
 
 export const FormArea: FC<Omit<StatesType, "setHasTitleError" | "setHasTimeError" | "onAdd" | "handleUpdate" | "handleDelete">> = (props) => {
 
