@@ -4,9 +4,9 @@ import { formatDate } from "../../../functions/date/formatDate";
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton"
 
 import type { FC } from "react";
-import type { StatesType } from "../../../@types/statesType";
+import type { StatesType } from "../../../@types/StatesType";
 
-export const HistoryTable: FC<Pick<StatesType, "title" | "time" | "records" | "handleUpdate" | "handleDelete"> = (props) => {
+export const HistoryTable: FC<Pick<StatesType, "title" | "time" | "records" | "handleUpdate" | "handleDelete">> = (props) => {
   const {
     title, time, records,
     handleUpdate,
@@ -25,7 +25,8 @@ export const HistoryTable: FC<Pick<StatesType, "title" | "time" | "records" | "h
         </tr>
       </thead>
       <tbody>
-        {records.map((record)=>
+        {// @ts-ignore TS18048: 'records' is possibly 'undefined'.
+         records.map((record)=>
           <tr key={record.id}>
             <td>{formatDate(record.created_at, "/")}</td>
             <td>{record.title}</td>
@@ -33,6 +34,7 @@ export const HistoryTable: FC<Pick<StatesType, "title" | "time" | "records" | "h
             <td className="btn-space">
               <PrimaryButton
                 onClick={
+                  // @ts-ignore TS2722: Cannot invoke an object which is possibly 'undefined'.
                   () => handleUpdate(record.id, title, time)
                 }
               >更新</PrimaryButton>
@@ -40,6 +42,7 @@ export const HistoryTable: FC<Pick<StatesType, "title" | "time" | "records" | "h
             <td className="btn-space">
               <PrimaryButton
                 onClick={
+                  // @ts-ignore TS2722: Cannot invoke an object which is possibly 'undefined'.
                   () => handleDelete(record.id)
                 }
               >削除</PrimaryButton>

@@ -4,7 +4,7 @@ import { PrimaryButton } from "../../atoms/buttons/PrimaryButton";
 import { ErrorMessage } from '../../atoms/messages/ErrorMessage';
 
 import type { FC } from 'react';
-import type { StatesType } from "../../../@types/statesType";
+import type { StatesType } from "../../../@types/StatesType";
 
 export const InputForm: FC<Omit<StatesType, "records" | "sum" | "updateSumTime" | "handleAdd" | "handleUpdate" | "handleDelete">> = (props) => {
   // ==========================
@@ -49,12 +49,12 @@ export const InputForm: FC<Omit<StatesType, "records" | "sum" | "updateSumTime" 
         placeholder="整数を入力"
         onChange={onChangeTime}
       />時間
-      {
-        // @ts-ignore TS2554: Expected 0 arguments, but got 2.
-      }
-      <PrimaryButton onClick={() => onAdd(title, time)} >追加</PrimaryButton>
-      {!hasTitleError && <ErrorMessage>学習した内容を入力してください</ErrorMessage>}
-      {!hasTimeError  && <ErrorMessage>1以上の整数を入力してください</ErrorMessage>}
+      <PrimaryButton onClick={
+        // @ts-ignore TS2722: Cannot invoke an object which is possibly 'undefined'.
+        () => onAdd(title, time)
+      } >追加</PrimaryButton>
+      {hasTitleError && <ErrorMessage>学習した内容を入力してください</ErrorMessage>}
+      {hasTimeError  && <ErrorMessage>1以上の整数を入力してください</ErrorMessage>}
     </SContainer>
   )
 }

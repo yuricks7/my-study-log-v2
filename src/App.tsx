@@ -1,5 +1,5 @@
-// @ts-ignore TS2882: Cannot find module or type declarations for side-effect import of './App.css'.
-import './App.css';
+import styled from 'styled-components';
+
 import { useState, useEffect } from 'react';
 import { DbUsecase } from "./functions/database/DbUsecase";
 
@@ -8,7 +8,6 @@ import { HistoryArea } from "./components/organisms/HistoryArea"
 
 import type { RecordType } from './@types/RecordType';
 
-// @ts-ignore TS7010: 'App', which lacks return-type annotation, implicitly has an 'any' return type.
 export const App = () => {
   const [records, setRecords] = useState<RecordType[]>([]);
   const [sum, setSum] = useState<number>(0);
@@ -132,26 +131,68 @@ export const App = () => {
   // テンプレート
   // =====================================
   return (
-    <div className="container">
-      <h1>学習記録アプリ</h1>
-      <FormArea
-        title={title} setTitle={setTitle}
-        time={time} setTime={setTime}
-        records={records} setRecords={setRecords}
-        sum={sum} setSum={setSum}
-        updateSumTime={updateSumTime}
-        hasTitleError={hasTitleError}
-        hasTimeError={hasTimeError}
-        handleAdd={handleAdd}
-      />
-      <HistoryArea
-        title={title} time={time}
-        sum={sum} records={records}
-        handleUpdate={handleUpdate}
-        handleDelete={handleDelete}
-      />
-    </div>
+    <SContainer>
+      <div className='container'>
+        <h1>学習記録アプリ</h1>
+        <FormArea
+          title={title} setTitle={setTitle}
+          time={time} setTime={setTime}
+          records={records} setRecords={setRecords}
+          sum={sum} setSum={setSum}
+          updateSumTime={updateSumTime}
+          hasTitleError={hasTitleError}
+          hasTimeError={hasTimeError}
+          handleAdd={handleAdd}
+        />
+        <HistoryArea
+          title={title} time={time}
+          sum={sum} records={records}
+          handleUpdate={handleUpdate}
+          handleDelete={handleDelete}
+        />
+      </div>
+    </SContainer>
   );
 }
 
-export default App;
+const SContainer = styled.div`
+  body {
+    margin: 10px auto;
+    font-size: 18px;
+    color: #3b3b3b;
+  }
+
+  .container {
+    margin: 0 auto;
+    padding: 8px;
+    width: 600px;
+    border-radius: 8px;
+  }
+
+  .history-area {
+    border: 2px solid #aacfd0;
+    min-height: 200px;
+    padding: 8px;
+    margin: 8px;
+    border-radius: 8px;
+    background-color: #c9dede;
+  }
+
+  h1 {
+    margin: 0;
+    padding-bottom: 8px;
+    text-align: center;
+  }
+
+  p {
+    margin: 0 0 8px;
+  }
+
+  /* レスポンシブ対応 */
+  @media screen and (max-width: 600px) {
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+}`;
