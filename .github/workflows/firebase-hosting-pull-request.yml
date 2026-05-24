@@ -16,8 +16,8 @@ jobs:
         uses: actions/checkout@v4
       - run: npm ci && npm run build
         env:
-          VITE_SUPABASE_URL: ${{secrets.SUPABASE_URL}}
-          VITE_SUPABASE_PUBLISHABLE_API_KEY: ${{secrets.SUPABASE_PUBLISHABLE_API_KEY}}
+          VITE_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_API_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_API_KEY }}
 
       - name: Deploy to firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
