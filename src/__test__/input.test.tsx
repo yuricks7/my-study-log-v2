@@ -1,18 +1,16 @@
 import "@testing-library/jest-dom";
+
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import { App } from "../App";
 
 describe("入力フォームが存在すること", () => {
+  // 初期設定
   const setUp = () => {
     render(<App />);
-    const titleInput = screen.getByRole(
-      'textbox', {name: 'title'}
-    );
-    const timeInput = screen.getByRole(
-      'textbox', {name: "time"}
-    );
-    const submitButton = screen.getByLabelText('追加');
+    const titleInput = screen.getByRole('textbox', {name: 'title'});
+    const timeInput = screen.getByRole('spinbutton', {name: "time"});
+    const submitButton = screen.getByRole('button', {name: "追加"});
 
     return { titleInput, timeInput, submitButton };
   };
@@ -27,7 +25,7 @@ describe("入力フォームが存在すること", () => {
     expect(timeInput).toHaveValue(0);
 
     expect(submitButton).toBeInTheDocument();
-    expect(submitButton).not.toBeEnabled();
+    expect(submitButton).toBeEnabled();
   });
 
   test("空のフィールドでフォームを送信した場合にバリデーションエラーが表示される", async () => {
