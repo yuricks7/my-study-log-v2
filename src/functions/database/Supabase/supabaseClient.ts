@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js'
-// import process from 'process';
 
 // Supabaseの設定
 export const supabaseUrl: any
