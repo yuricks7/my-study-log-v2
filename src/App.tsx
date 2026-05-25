@@ -31,20 +31,46 @@ export const App = () => {
   }, []);
 
   /**
+   * 入力のバリデーション
+   * @param title
+   * @param time
+   * @returns {boolean}
+   */
+  const isInvalidInput = (title: string, time: number): boolean => {
+    if (title === "" && time <= 0) {
+      console.log("Hi!");
+      setHasTitleError(true);
+      setHasTimeError(true);
+      return true;
+
+    } else if (title === "") {
+      console.log("Ho!");
+      setHasTitleError(true);
+      setHasTimeError(false);
+      return true;
+
+    } else if (time <= 0) {
+      console.log("Foo!");
+      setHasTitleError(false);
+      setHasTimeError(true);
+      return true;
+    }
+
+    console.log("Bar!");
+    setHasTitleError(false);
+    setHasTimeError(false);
+    return false;
+  }
+
+  /**
    * 追加
    *
    * @param title
    * @param time
    */
   const handleAdd = async (title: string, time: number) => {
-    if (!title) {
-      setHasTitleError(true);
-      return;
-    }
-    if (!time) {
-      setHasTimeError(true);
-      return;
-    }
+    if (isInvalidInput(title, time)) return;
+    console.log("add");
 
     let m: string = '';
     m += `この内容で登録しますか？\n`;
@@ -71,14 +97,8 @@ export const App = () => {
    * @param time
    */
   const handleUpdate = async (id: string, title: string, time: number) => {
-    if (!title) {
-      setHasTitleError(true);
-      return;
-    }
-    if (!time) {
-      setHasTimeError(true);
-      return;
-    }
+    if (isInvalidInput(title, time)) return;
+    console.log("update");
 
     // 更新
     const updated: RecordType = await DbUsecase.update(id, title, time);
