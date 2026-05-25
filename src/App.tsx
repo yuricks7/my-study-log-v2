@@ -8,7 +8,7 @@ import { HistoryArea } from "./components/organisms/HistoryArea"
 
 import type { RecordType } from './@types/RecordType';
 
-export const App = () => {
+export default function App() {
   const [records, setRecords] = useState<RecordType[]>([]);
   const [sum, setSum] = useState<number>(0);
 
