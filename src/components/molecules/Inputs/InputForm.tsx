@@ -36,19 +36,27 @@ export const InputForm: FC<Omit<StatesType, "records" | "sum" | "updateSumTime" 
   // ==========================
   return (
     <SContainer>
-      <textarea
-        value={title}
-        aria-label="title"
-        placeholder="内容を入力"
-        onChange={onChangeTitle}
-      ></textarea>
-      <input
-        type="number"
-        aria-label="time"
-        value={time}
-        placeholder="整数を入力"
-        onChange={onChangeTime}
-      />時間
+      <p>
+        <label htmlFor="title">学習内容<br/>
+          <textarea
+            id="title"
+            value={title}
+            placeholder="内容を入力"
+            onChange={onChangeTitle}
+          ></textarea>
+        </label>
+      </p>
+      <p>
+        <label htmlFor="time">学習時間<br/>
+          <input
+            id="time"
+            type="number"
+            value={time}
+            placeholder="整数を入力"
+            onChange={onChangeTime}
+          />
+        </label>時間
+      </p>
       <PrimaryButton onClick={
         // @ts-ignore TS2722: Cannot invoke an object which is possibly 'undefined'.
         () => onAdd(title, time)
