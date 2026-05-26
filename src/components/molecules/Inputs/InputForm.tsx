@@ -56,11 +56,11 @@ export const InputForm: FC<Omit<StatesType, "records" | "sum" | "updateSumTime" 
             onChange={onChangeTime}
           />
         </label>時間
+        <PrimaryButton onClick={
+          // @ts-ignore TS2722: Cannot invoke an object which is possibly 'undefined'.
+          () => onAdd(title, time)
+        } >追加</PrimaryButton>
       </p>
-      <PrimaryButton onClick={
-        // @ts-ignore TS2722: Cannot invoke an object which is possibly 'undefined'.
-        () => onAdd(title, time)
-      } >追加</PrimaryButton>
       {hasTitleError && <ErrorMessage>学習した内容を入力してください</ErrorMessage>}
       {hasTimeError  && <ErrorMessage>1以上の整数を入力してください</ErrorMessage>}
     </SContainer>
@@ -93,4 +93,6 @@ const SContainer = styled.div`
     border: 2px solid ${borderColor};
     padding: 6px 16px;
   }
+
+  text-align: center;
 `;
