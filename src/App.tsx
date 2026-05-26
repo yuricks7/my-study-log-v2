@@ -38,25 +38,21 @@ export default function App() {
    */
   const isInvalidInput = (title: string, time: number): boolean => {
     if (title === "" && time <= 0) {
-      console.log("Hi!");
       setHasTitleError(true);
       setHasTimeError(true);
       return true;
 
     } else if (title === "") {
-      console.log("Ho!");
       setHasTitleError(true);
       setHasTimeError(false);
       return true;
 
     } else if (time <= 0) {
-      console.log("Foo!");
       setHasTitleError(false);
       setHasTimeError(true);
       return true;
     }
 
-    console.log("Bar!");
     setHasTitleError(false);
     setHasTimeError(false);
     return false;
