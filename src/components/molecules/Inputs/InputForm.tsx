@@ -85,7 +85,6 @@ const SContainer = styled.div`
 
     width:  460px;
     height: 100px;
-    margin: 0 auto; /* 効かない */
   }
 
   input {
