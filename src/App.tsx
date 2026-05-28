@@ -8,6 +8,10 @@ import { HistoryArea } from "./components/organisms/HistoryArea"
 
 import type { RecordType } from './@types/RecordType';
 
+import { useContext } from "react";
+import { ErrorContext, ErrorProvider } from "./providers/ErrorProvider";
+import { hasError } from './functions/input/hasError';
+
 export default function App() {
   const [records, setRecords] = useState<RecordType[]>([]);
   const [sum, setSum] = useState<number>(0);
@@ -30,12 +34,6 @@ export default function App() {
     load();
   }, []);
 
-  /**
-   * 入力のバリデーション
-   * @param title
-   * @param time
-   * @returns {boolean}
-   */
   const isInvalidInput = (title: string, time: number): boolean => {
     if (title === "" && time <= 0) {
       setHasTitleError(true);
@@ -58,6 +56,16 @@ export default function App() {
     return false;
   }
 
+  const canContinue = (title: string, time: number, action: string): boolean => {
+    let m: string = '';
+    m += `この内容で${action}しますか？\n`;
+    m += `内容：${title}\n`;
+    m += `時間：${time}`;
+    if (!confirm(m)) return false;
+
+    return true;
+  }
+
   /**
    * 追加
    *
@@ -65,14 +73,9 @@ export default function App() {
    * @param time
    */
   const handleAdd = async (title: string, time: number) => {
+    // バリデーション
     if (isInvalidInput(title, time)) return;
-    console.log("add");
-
-    let m: string = '';
-    m += `この内容で登録しますか？\n`;
-    m += `内容：${title}\n`;
-    m += `時間：${time}`;
-    if (!confirm(m)) return;
+    if (!canContinue(title, time, "追加")) return;
 
     // データを追加
     const newRecord: RecordType = await DbUsecase.add(title, time);
@@ -93,8 +96,9 @@ export default function App() {
    * @param time
    */
   const handleUpdate = async (id: string, title: string, time: number) => {
+    // バリデーション
     if (isInvalidInput(title, time)) return;
-    console.log("update");
+    if (!canContinue(title, time, "上書き")) return;
 
     // 更新
     const updated: RecordType = await DbUsecase.update(id, title, time);
@@ -147,27 +151,29 @@ export default function App() {
   // テンプレート
   // =====================================
   return (
-    <SContainer>
-      <div className='container'>
-        <h1>学習記録アプリ</h1>
-        <FormArea
-          title={title} setTitle={setTitle}
-          time={time} setTime={setTime}
-          records={records} setRecords={setRecords}
-          sum={sum} setSum={setSum}
-          updateSumTime={updateSumTime}
-          hasTitleError={hasTitleError}
-          hasTimeError={hasTimeError}
-          handleAdd={handleAdd}
-        />
-        <HistoryArea
-          title={title} time={time}
-          sum={sum} records={records}
-          handleUpdate={handleUpdate}
-          handleDelete={handleDelete}
-        />
-      </div>
-    </SContainer>
+    <ErrorProvider>
+      <SContainer>
+        <div className='container'>
+          <h1>学習記録アプリ</h1>
+          <FormArea
+            title={title} setTitle={setTitle}
+            time={time} setTime={setTime}
+            records={records} setRecords={setRecords}
+            sum={sum} setSum={setSum}
+            updateSumTime={updateSumTime}
+            hasTitleError={hasTitleError}
+            hasTimeError={hasTimeError}
+            handleAdd={handleAdd}
+          />
+          <HistoryArea
+            title={title} time={time}
+            sum={sum} records={records}
+            handleUpdate={handleUpdate}
+            handleDelete={handleDelete}
+          />
+        </div>
+      </SContainer>
+    </ErrorProvider>
   );
 }
 
