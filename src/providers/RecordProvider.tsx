@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { addRecord, updateRecord, deleteRecord, calcSum } from "../functions/database/recordUtils";
 
-import { dbUsecase } from "../functions/database/dbUsecase";
+import { dbUsecase } from "../functions/database/Supabase/dbUsecase";
 
 import type { RecordType } from "../@types/RecordType";
 
