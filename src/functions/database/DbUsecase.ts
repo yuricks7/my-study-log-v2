@@ -12,7 +12,7 @@ export const DbUsecase = {
     const { data, error } = await supabase
       .from(TABLE_NAME)
       .select("*")
-      .order("id", { ascending: true });
+      .order("created_at", { ascending: true });
 
     if (error) throw error;
     return data;
