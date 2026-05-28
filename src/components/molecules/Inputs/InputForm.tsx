@@ -1,22 +1,24 @@
 import styled from "styled-components";
 
+import { useRecord } from "../../../providers/RecordProvider";
+
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton";
 import { ErrorMessage } from '../../atoms/messages/ErrorMessage';
 
-import type { FC } from 'react';
-import type { StatesType } from "../../../@types/StatesType";
-
-export const InputForm: FC<Omit<StatesType, "records" | "sum" | "updateSumTime" | "handleAdd" | "handleUpdate" | "handleDelete">> = (props) => {
+export const InputForm = () => {
   // ==========================
   //  states
   // ==========================
+
   const {
-    title, setTitle,
-    time, setTime,
+    title,
+    setTitle,
+    time,
+    setTime,
     hasTitleError,
     hasTimeError,
-    onAdd
-  } = props;
+    handleAdd
+  } = useRecord();
 
   // ==========================
   //  イベント
@@ -58,7 +60,7 @@ export const InputForm: FC<Omit<StatesType, "records" | "sum" | "updateSumTime" 
         </label>時間
         <PrimaryButton onClick={
           // @ts-ignore TS2722: Cannot invoke an object which is possibly 'undefined'.
-          () => onAdd(title, time)
+          () => handleAdd(title, time)
         } >追加</PrimaryButton>
       </p>
       {hasTitleError && <ErrorMessage>学習した内容を入力してください</ErrorMessage>}

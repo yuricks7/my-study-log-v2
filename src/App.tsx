@@ -7,6 +7,7 @@ import { FormArea } from "./components/organisms/FormArea"
 import { HistoryArea } from "./components/organisms/HistoryArea"
 
 import type { RecordType } from './@types/RecordType';
+import { RecordProvider, useRecord } from './providers/RecordProvider';
 
 export default function App() {
   const [records, setRecords] = useState<RecordType[]>([]);
@@ -124,27 +125,32 @@ export default function App() {
   // テンプレート
   // =====================================
   return (
-    <SContainer>
-      <div className='container'>
-        <h1>学習記録アプリ</h1>
-        <FormArea
-          title={title} setTitle={setTitle}
-          time={time} setTime={setTime}
-          records={records} setRecords={setRecords}
-          sum={sum} setSum={setSum}
-          updateSumTime={updateSumTime}
-          hasTitleError={hasTitleError}
-          hasTimeError={hasTimeError}
-          handleAdd={handleAdd}
-        />
-        <HistoryArea
-          title={title} time={time}
-          sum={sum} records={records}
-          handleUpdate={handleUpdate}
-          handleDelete={handleDelete}
-        />
-      </div>
-    </SContainer>
+    <RecordProvider>
+      <SContainer>
+        <div className='container'>
+          <h1>学習記録アプリ</h1>
+          <FormArea useRecord={useRecord} />
+          <HistoryArea useRecord={useRecord} />
+          {/* <FormArea
+            title={title} setTitle={setTitle}
+            time={time} setTime={setTime}
+            records={records} setRecords={setRecords}
+            sum={sum} setSum={setSum}
+            updateSumTime={updateSumTime}
+            hasTitleError={hasTitleError}
+            hasTimeError={hasTimeError}
+            handleAdd={handleAdd}
+          /> */}
+          {/* <HistoryArea
+            // useRecord={useRecord}
+            // title={title} time={time}
+            // sum={sum} records={records}
+            // handleUpdate={handleUpdate}
+            // handleDelete={handleDelete}
+          /> */}
+        </div>
+      </SContainer>
+    </RecordProvider>
   );
 }
 
