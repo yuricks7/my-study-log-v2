@@ -1,17 +1,16 @@
 import styled from "styled-components";
 
 import { formatDate } from "../../../functions/date/formatDate";
+import { useRecord } from "../../../providers/RecordProvider";
+
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton"
 
-import type { FC } from "react";
-import type { StatesType } from "../../../@types/StatesType";
+export const HistoryTable = () => {
 
-export const HistoryTable: FC<Pick<StatesType, "title" | "time" | "records" | "handleUpdate" | "handleDelete">> = (props) => {
   const {
     title, time, records,
-    handleUpdate,
-    handleDelete
-  } = props;
+    handleUpdate, handleDelete
+  } = useRecord();
 
   return (
     <STable>

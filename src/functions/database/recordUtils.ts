@@ -9,7 +9,7 @@ export const updateRecord = (records: RecordType[], updatedRecord: RecordType): 
     record.id === updatedRecord.id ? updatedRecord : record)
 }
 
-export const deleteRecord = (records: RecordType[], id: string) => {
+export const deleteRecord = (records: RecordType[], id: string): RecordType[] => {
   return records.filter((record) => record.id !== id);
 }
 

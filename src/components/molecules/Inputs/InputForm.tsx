@@ -9,14 +9,9 @@ export const InputForm = () => {
   // ==========================
   //  states
   // ==========================
-
   const {
-    title,
-    setTitle,
-    time,
-    setTime,
-    hasTitleError,
-    hasTimeError,
+    title, setTitle, hasTitleError,
+    time, setTime, hasTimeError,
     handleAdd
   } = useRecord();
 

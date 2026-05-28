@@ -1,129 +1,11 @@
 import styled from 'styled-components';
 
-import { useState, useEffect } from 'react';
-import { DbUsecase } from "./functions/database/DbUsecase";
-
 import { FormArea } from "./components/organisms/FormArea"
 import { HistoryArea } from "./components/organisms/HistoryArea"
 
-import type { RecordType } from './@types/RecordType';
 import { RecordProvider, useRecord } from './providers/RecordProvider';
 
 export default function App() {
-  const [records, setRecords] = useState<RecordType[]>([]);
-  const [sum, setSum] = useState<number>(0);
-
-  const [title, setTitle] = useState<string>("");
-  const [time,  setTime]  = useState<number>(0);
-
-  const [hasTitleError, setHasTitleError] = useState<boolean>(false);
-  const [hasTimeError, setHasTimeError] = useState<boolean>(false);
-
-  // =====================================
-  // データベース操作
-  // =====================================
-  useEffect(() => {
-    async function load() {
-      const list: RecordType[] = await DbUsecase.fetchList();
-      setRecords(list); // ← これが重要
-      setSum(updateSumTime(list));
-    }
-    load();
-  }, []);
-
-  const handleAdd = async (title: string, time: number) => {
-    // バリデーション
-    if (isInvalidInput(title, time)) return;
-    if (!canContinue(title, time, "追加")) return;
-
-    // データを追加
-    const newRecord: RecordType = await DbUsecase.add(title, time);
-    const newList: RecordType[] = [...records, newRecord];
-    setRecords(newList);
-    setSum(updateSumTime(newList));
-
-    // 初期化
-    setTitle("");
-    setTime(0);
-  };
-
-  const handleUpdate = async (id: string, title: string, time: number) => {
-    // バリデーション
-    if (isInvalidInput(title, time)) return;
-    if (!canContinue(title, time, "上書き")) return;
-
-    // 更新
-    const updated: RecordType = await DbUsecase.update(id, title, time);
-    const newList: RecordType[] = records.map((row) =>
-      row.id === id ? updated : row
-    );
-
-    setRecords(newList);
-    setSum(updateSumTime(newList));
-
-    // 初期化
-    setTitle("");
-    setTime(0);
-  };
-
-  const handleDelete = async (id: string) => {
-    await DbUsecase.remove(id);
-
-    const newList: RecordType[] = records.filter(
-      (row) => row.id !== id
-    );
-    setRecords(newList);
-    setSum(updateSumTime(newList));
-  };
-
-  // =====================================
-  // 関数の定義
-  // =====================================
-  const isInvalidInput = (title: string, time: number): boolean => {
-    if (title === "" && time <= 0) {
-      setHasTitleError(true);
-      setHasTimeError(true);
-      return true;
-
-    } else if (title === "") {
-      setHasTitleError(true);
-      setHasTimeError(false);
-      return true;
-
-    } else if (time <= 0) {
-      setHasTitleError(false);
-      setHasTimeError(true);
-      return true;
-    }
-
-    setHasTitleError(false);
-    setHasTimeError(false);
-    return false;
-  }
-
-  const canContinue = (title: string, time: number, action: string): boolean => {
-    let m: string = '';
-    m += `この内容で${action}しますか？\n`;
-    m += `内容：${title}\n`;
-    m += `時間：${time}時間`;
-    if (!confirm(m)) return false;
-
-    return true;
-  }
-
-  // @ts-ignore Target signature provides too few arguments. Expected 1 or more, but got 0.
-  const updateSumTime = (arr: RecordType[]): number => {
-    let ret: number = 0;
-    for (let record of arr) {
-      ret += record.time;
-    }
-
-    return ret;
-  }
-
-  // =====================================
-  // テンプレート
-  // =====================================
   return (
     <RecordProvider>
       <SContainer>
@@ -131,23 +13,6 @@ export default function App() {
           <h1>学習記録アプリ</h1>
           <FormArea useRecord={useRecord} />
           <HistoryArea useRecord={useRecord} />
-          {/* <FormArea
-            title={title} setTitle={setTitle}
-            time={time} setTime={setTime}
-            records={records} setRecords={setRecords}
-            sum={sum} setSum={setSum}
-            updateSumTime={updateSumTime}
-            hasTitleError={hasTitleError}
-            hasTimeError={hasTimeError}
-            handleAdd={handleAdd}
-          /> */}
-          {/* <HistoryArea
-            // useRecord={useRecord}
-            // title={title} time={time}
-            // sum={sum} records={records}
-            // handleUpdate={handleUpdate}
-            // handleDelete={handleDelete}
-          /> */}
         </div>
       </SContainer>
     </RecordProvider>

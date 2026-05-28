@@ -7,7 +7,7 @@ export const TABLE_NAME: string = "my-study-log-v2";
 /**
  * Supabaseの操作各種
  */
-export const DbUsecase = {
+export const dbUsecase = {
   async fetchList(): Promise<RecordType[]> {
     const { data, error } = await supabase
       .from(TABLE_NAME)
