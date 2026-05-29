@@ -6,7 +6,7 @@ import App from "../App";
 
 // モックの設定
 jest.mock("../functions/database/Supabase/dbUsecase", () => ({
-  DbUsecase: {
+  dbUsecase: {
     fetchList: jest.fn(),
     add: jest.fn(),
     update: jest.fn(),
@@ -34,8 +34,8 @@ describe("入力フォームが存在すること", () => {
   };
 
   test("各要素が正しく読み込まれる", async () => {
-    const { DbUsecase } = require("../functions/database/DbUsecase");
-    DbUsecase.fetchList.mockResolvedValue(mockRecords);
+    const { dbUsecase } = require("../functions/database/Supabase/dbUsecase");
+    dbUsecase.fetchList.mockResolvedValue(mockRecords);
 
     render(<App />);
 
