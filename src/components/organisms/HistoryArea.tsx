@@ -1,7 +1,7 @@
 import { AreaHeader } from "../atoms/headers/AreaHeader"
 import { HistoryTable } from "../molecules/tables/HistoryTable"
 
-import { useRecord } from "../../providers/RecordProvider";
+import { useRecord } from "../../hooks/useRecord";
 
 export const HistoryArea = () => {
 

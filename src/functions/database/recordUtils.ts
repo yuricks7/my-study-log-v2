@@ -1,4 +1,4 @@
-import type { RecordType } from './@types/RecordType';
+import type { RecordType } from '../../@types/RecordType';
 
 export const addRecord = (records: RecordType[], newRecord: RecordType): RecordType[] => {
   return [...records, newRecord];

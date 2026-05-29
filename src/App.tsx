@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FormArea } from "./components/organisms/FormArea"
 import { HistoryArea } from "./components/organisms/HistoryArea"
 
-import { RecordProvider, useRecord } from './providers/RecordProvider';
+import { RecordProvider } from './providers/RecordProvider';
 
 export default function App() {
   return (

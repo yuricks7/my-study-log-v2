@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { useRecord } from "../../../providers/RecordProvider";
+import { useRecord } from "../../../hooks/useRecord";
 
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton";
 import { ErrorMessage } from '../../atoms/messages/ErrorMessage';

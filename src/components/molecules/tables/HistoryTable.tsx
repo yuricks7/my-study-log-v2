@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { formatDate } from "../../../functions/date/formatDate";
-import { useRecord } from "../../../providers/RecordProvider";
+import { useRecord } from "../../../hooks/useRecord";
 
 import { PrimaryButton } from "../../atoms/buttons/PrimaryButton"
 

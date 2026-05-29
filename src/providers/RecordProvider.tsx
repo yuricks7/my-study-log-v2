@@ -1,16 +1,21 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { addRecord, updateRecord, deleteRecord, calcSum } from "../functions/database/recordUtils";
 
 import { dbUsecase } from "../functions/database/Supabase/dbUsecase";
 
+import type { FC, ReactNode } from "react";
 import type { RecordType } from "../@types/RecordType";
-import type { StatesType } from "../@types/StatesType";
+
+type Props = {
+  children: ReactNode;
+}
 
 // コンテキストを定義
-const RecordContext = createContext();
+// @ts-ignore TS2554: Expected 1 arguments, but got 0.
+export const RecordContext = createContext();
 
 // プロバイダー
-export const RecordProvider = (props) => {
+export const RecordProvider: FC<Props> = (props) => {
   const { children } = props;
 
   const [records, setRecords] = useState<RecordType[]>([]);
@@ -129,6 +134,3 @@ export const RecordProvider = (props) => {
     </RecordContext.Provider>
   )
 }
-
-// コンテキストをエクスポート
-export const useRecord = (): StatesType => useContext(RecordContext);
