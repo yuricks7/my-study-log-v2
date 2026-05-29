@@ -4,6 +4,7 @@ import { addRecord, updateRecord, deleteRecord, calcSum } from "../functions/dat
 import { dbUsecase } from "../functions/database/Supabase/dbUsecase";
 
 import type { RecordType } from "../@types/RecordType";
+import type { StatesType } from "../@types/StatesType";
 
 // コンテキストを定義
 const RecordContext = createContext();
@@ -130,4 +131,4 @@ export const RecordProvider = (props) => {
 }
 
 // コンテキストをエクスポート
-export const useRecord = () => useContext(RecordContext);
+export const useRecord = (): StatesType => useContext(RecordContext);

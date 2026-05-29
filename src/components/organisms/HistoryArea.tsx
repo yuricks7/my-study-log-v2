@@ -1,11 +1,9 @@
 import { AreaHeader } from "../atoms/headers/AreaHeader"
 import { HistoryTable } from "../molecules/tables/HistoryTable"
 
-import type { FC } from "react";
-import type { StatesType } from "../../@types/StatesType";
 import { useRecord } from "../../providers/RecordProvider";
 
-export const HistoryArea: FC<Pick<StatesType, "title" | "time" | "records" | "sum" | "handleUpdate" | "handleDelete">> = () => {
+export const HistoryArea = () => {
 
   const { sum } = useRecord();
 

@@ -11,8 +11,8 @@ export default function App() {
       <SContainer>
         <div className='container'>
           <h1>学習記録アプリ</h1>
-          <FormArea useRecord={useRecord} />
-          <HistoryArea useRecord={useRecord} />
+          <FormArea/>
+          <HistoryArea/>
         </div>
       </SContainer>
     </RecordProvider>

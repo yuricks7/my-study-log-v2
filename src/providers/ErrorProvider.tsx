@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
 
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 type Props = {
-  children: any;
+  children: ReactNode;
 }
 
 export const ErrorContext = createContext({});

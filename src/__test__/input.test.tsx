@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import App from "../App";
 
 // モックの設定
-jest.mock("../functions/database/DbUsecase", () => ({
+jest.mock("../functions/database/Supabase/dbUsecase", () => ({
   DbUsecase: {
     fetchList: jest.fn(),
     add: jest.fn(),
