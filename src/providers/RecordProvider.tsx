@@ -56,7 +56,7 @@ export const RecordProvider: FC<Props> = (props) => {
   const handleUpdate = async (id: string, title: string, time: number) => {
     // バリデーション
     if (hasInputError(title, time)) return;
-    if (!confirmInput(title, time, "追加")) return;
+    if (!confirmInput(title, time, "上書き")) return;
 
     // データを更新
     const newRecord = await dbUsecase.update(id, title, time);
