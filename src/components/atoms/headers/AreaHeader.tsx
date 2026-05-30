@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 type Props = {
-  children: string
+  children: ReactNode;
 }
 
 export const AreaHeader: FC<Props> = (props) => {

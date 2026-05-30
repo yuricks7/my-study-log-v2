@@ -3,29 +3,12 @@ import styled from "styled-components";
 import { AreaHeader } from "../atoms/headers/AreaHeader";
 import { InputForm }  from "../molecules/Inputs/InputForm";
 
-import type { FC } from "react";
-import type { StatesType } from "../../@types/StatesType";
-
-export const FormArea: FC<Omit<StatesType, "setHasTitleError" | "setHasTimeError" | "onAdd" | "handleUpdate" | "handleDelete">> = (props) => {
-
-  const {
-    title, setTitle,
-    time, setTime,
-    hasTitleError,
-    hasTimeError,
-    handleAdd
-  } = props;
+export const FormArea = () => {
 
   return (
     <SContainer>
       <AreaHeader>入力</AreaHeader>
-      <InputForm
-        title={title} setTitle={setTitle}
-        time={time} setTime={setTime}
-        hasTitleError={hasTitleError}
-        hasTimeError={hasTimeError}
-        onAdd={handleAdd}
-      />
+      <InputForm />
     </SContainer>
   )
 }
